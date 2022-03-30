@@ -13,7 +13,6 @@ import drunkframework
 import tkinter
 import random
 
-NUM_DRUNKS = 2
 
 def load_town(file):
     drunk_town = []
@@ -47,40 +46,35 @@ def plot_town(town):
 def main():
     drunk_town = load_town("drunk.txt") 
     density_town = deepcopy(drunk_town)
-    fig,ax = matplotlib.pyplot.subplots() 
-    
-    drunks = []
-    for i in range(NUM_DRUNKS):
-        drunkman = drunkframework.person(150, 150, (i+1)*10, density_town)
-        drunks.append(drunkman)
+    plot_town(drunk_town)
+    fig = matplotlib.pyplot.figure(figsize=(7, 7))
+    ax = fig.add_axes([0, 0, 1, 1])
 
     
     def update(framenumber):
-        drunkman = drunks[0]
-        ax.clear()
+        fig.clear()
         drunkman.move()
         drunkman.density()
-        print(drunkman)
+        #print(drunkman)
         plot_town(drunk_town)
         drunkman.show()
-        if drunk_town[drunkman.y][drunkman.x] == drunkman.housenumber:
-            drunks.pop(0)
-            print (drunkman, "is home")
-            
+        ax.scatter(random.randint(0,300),random.randint(0,300), color = "white")
         
     def gen_function():   
         a = 0
-        while len(drunks) > 0:
+        while drunkman is None or drunk_town[drunkman.y][drunkman.x] != drunkman.housenumber:
             yield a
             a = a + 1
         
     def start():
-        animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False, interval = 1)
-        canvas.draw() 
-        animation.save
+        global drunkman
+        for i in range(1):
+            drunkman = drunkframework.person(150, 150, (i+1)*10, density_town)
+            animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+            canvas.draw() 
+            matplotlib.pyplot.show()
         plot_town(density_town)
         drunkman.show()
-        matplotlib.pyplot.show()
 
         f2 = open('drunk_desnity.txt', 'w', newline='')
         writer = csv.writer(f2)

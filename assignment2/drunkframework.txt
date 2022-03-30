@@ -8,9 +8,9 @@ import matplotlib
 import random
 
 class person():
-    def __init__(self, y, x, housenumber, town):
+    def __init__(self, x, y, housenumber, town):
+        self.x = x 
         self.y = y
-        self.x = x
         self.housenumber = housenumber
         self.town = town
     
@@ -19,21 +19,21 @@ class person():
     
     def move(self):
         if random.random() < 0.5:
-            self.y = (self.y + 5) % 300
+            self.y = (self.y + 1) % 300
         else:
-            self.y = (self.y - 5) % 300
+            self.y = (self.y - 1) % 300
                 
         if random.random() < 0.5:
-            self.x = (self.x + 5) % 300
+            self.x = (self.x + 1) % 300
         else:
-            self.x = (self.x - 5) % 300
+            self.x = (self.x - 1) % 300
 
     def density(self):
         self.town[self.y][self.x] += 1 
             
                
     def show(self):
-        matplotlib.pyplot.scatter(self.x, self.y, color = "white")
+        matplotlib.pyplot.scatter(self.y, self.x, color = "white")
         
 
 
