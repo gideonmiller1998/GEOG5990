@@ -13,7 +13,7 @@ import drunkframework
 import tkinter
 import random
 
-NUM_DRUNKS = 2
+NUM_DRUNKS = 25
 
 def load_town(file):
     drunk_town = []
@@ -29,15 +29,6 @@ def load_town(file):
 
 def plot_town(town):
     town = deepcopy(town)
-    # houses = list(range(10,260,10))
-    # num2cidx = {"0":0, "1":1}
-    # for house in houses:
-    #     num2cidx[str(house)] = 2
-    # for i in range(len(town)):
-    #     for j in range(len(town[i])):
-    #         town[i][j] = num2cidx[str(int(town[i][j]))]
-
-
     matplotlib.pyplot.ylim(0, len(town[0]))
     matplotlib.pyplot.xlim(0, len(town))
     matplotlib.pyplot.imshow(town)
