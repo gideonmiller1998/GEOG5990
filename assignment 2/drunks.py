@@ -16,6 +16,20 @@ import random
 NUM_DRUNKS = 25
 
 def load_town(file):
+    """
+    
+
+    Parameters
+    ----------
+    file : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    drunk_town : TYPE
+        DESCRIPTION.
+
+    """
     drunk_town = []
     f = open(file, newline='')
     reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
@@ -28,6 +42,19 @@ def load_town(file):
     return drunk_town
 
 def plot_town(town):
+    """
+    
+
+    Parameters
+    ----------
+    town : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
     town = deepcopy(town)
     matplotlib.pyplot.ylim(0, len(town[0]))
     matplotlib.pyplot.xlim(0, len(town))
@@ -36,6 +63,15 @@ def plot_town(town):
 
     
 def main():
+    """
+    
+
+    Yields
+    ------
+    a : TYPE
+        DESCRIPTION.
+
+    """
     drunk_town = load_town("drunk.txt") 
     density_town = deepcopy(drunk_town)
     fig,ax = matplotlib.pyplot.subplots() 
@@ -47,6 +83,19 @@ def main():
 
     
     def update(framenumber):
+        """
+        
+
+        Parameters
+        ----------
+        framenumber : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        """
         drunkman = drunks[0]
         ax.clear()
         drunkman.move()
@@ -60,12 +109,29 @@ def main():
             
         
     def gen_function():   
+        """
+        
+
+        Yields
+        ------
+        a : TYPE
+            DESCRIPTION.
+
+        """
         a = 0
         while len(drunks) > 0:
             yield a
             a = a + 1
         
     def start():
+        """
+        
+
+        Returns
+        -------
+        None.
+
+        """
         animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False, interval = 1)
         canvas.draw() 
         animation.save
