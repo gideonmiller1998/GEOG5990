@@ -1,6 +1,6 @@
 ## Planning for Drunks
 
-These files make up the final agent-based model for assignmnet 2 of GEOG5990 module. The model simulates drunks leaving a pub as the centre of the map and walking around, taking steps in random directions, until they reach their home.
+These files make up the final agent-based model for assignmnet 2 of GEOG5990 module. The model successfully simulates drunks leaving a pub as the centre of the map and walking around, taking steps in random directions, until they reach their home.
 
 The data needed to run the model is:
 1. drunk.txt (the environment data)
