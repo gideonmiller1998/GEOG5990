@@ -11,13 +11,12 @@ import matplotlib.animation
 from copy import deepcopy
 import drunkframework
 import tkinter
-import random
 
 NUM_DRUNKS = 25
 
 def load_town(file):
     """
-    
+    Creates function to load environment data
 
     Parameters
     ----------
@@ -43,7 +42,7 @@ def load_town(file):
 
 def plot_town(town):
     """
-    
+    create function to plot and show environemnt data 
 
     Parameters
     ----------
@@ -59,12 +58,10 @@ def plot_town(town):
     matplotlib.pyplot.ylim(0, len(town[0]))
     matplotlib.pyplot.xlim(0, len(town))
     matplotlib.pyplot.imshow(town)
-
-
     
 def main():
     """
-    
+    main code for startin, updating and ending model
 
     Yields
     ------
@@ -84,7 +81,7 @@ def main():
     
     def update(framenumber):
         """
-        
+        updates model
 
         Parameters
         ----------
@@ -110,12 +107,12 @@ def main():
         
     def gen_function():   
         """
-        
+        create function to stop model when finished
 
         Yields
         ------
-        a : TYPE
-            DESCRIPTION.
+        a : int
+            next drunks number.
 
         """
         a = 0
@@ -125,7 +122,7 @@ def main():
         
     def start():
         """
-        
+        Create fundtion to begin running model
 
         Returns
         -------
@@ -139,6 +136,7 @@ def main():
         drunkman.show()
         matplotlib.pyplot.show()
 
+        #wriet file recording density of drunks passing each cell
         f2 = open('drunk_desnity.txt', 'w', newline='')
         writer = csv.writer(f2)
         for row in density_town: 
@@ -154,8 +152,6 @@ def main():
     
     root.mainloop() 
            
-    
-        
 
 if __name__ == "__main__":
     main()
