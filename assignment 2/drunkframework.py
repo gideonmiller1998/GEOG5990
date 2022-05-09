@@ -2,7 +2,7 @@
 """
 Created on Fri Mar 18 17:20:59 2022
 
-@author: gideo
+@author: gideon
 """
 import matplotlib
 import random

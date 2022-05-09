@@ -2,7 +2,7 @@
 """
 Created on Fri Mar 18 15:07:42 2022
 
-@author: gideo
+@author: gideon
 """
 
 import csv
@@ -20,13 +20,13 @@ def load_town(file):
 
     Parameters
     ----------
-    file : TYPE
-        DESCRIPTION.
+    file : str 
+        name of file containing environment data.
 
     Returns
-    -------
-    drunk_town : TYPE
-        DESCRIPTION.
+    ------- 
+    drunk_town : list[list[int]]
+        2d array of number representing environment.
 
     """
     drunk_town = []
@@ -46,9 +46,9 @@ def plot_town(town):
 
     Parameters
     ----------
-    town : TYPE
-        DESCRIPTION.
-
+    town : list[list[int]]
+        2d array of number representing environment.
+        
     Returns
     -------
     None.
@@ -61,12 +61,7 @@ def plot_town(town):
     
 def main():
     """
-    main code for startin, updating and ending model
-
-    Yields
-    ------
-    a : TYPE
-        DESCRIPTION.
+    main code for starting, updating and ending model
 
     """
     drunk_town = load_town("drunk.txt") 
@@ -85,8 +80,7 @@ def main():
 
         Parameters
         ----------
-        framenumber : TYPE
-            DESCRIPTION.
+        framenumber : int
 
         Returns
         -------
@@ -107,12 +101,7 @@ def main():
         
     def gen_function():   
         """
-        create function to stop model when finished
-
-        Yields
-        ------
-        a : int
-            next drunks number.
+        create function to stop model when finished when all drunk people home
 
         """
         a = 0
@@ -122,7 +111,7 @@ def main():
         
     def start():
         """
-        Create fundtion to begin running model
+        Create fundtion to begin running model and animation
 
         Returns
         -------
@@ -136,13 +125,14 @@ def main():
         drunkman.show()
         matplotlib.pyplot.show()
 
-        #wriet file recording density of drunks passing each cell
+        #write file recording density of drunks passing each cell
         f2 = open('drunk_desnity.txt', 'w', newline='')
         writer = csv.writer(f2)
         for row in density_town: 
             writer.writerow(row)
         f2.close()
-        
+    
+    #Create GUI
     root = tkinter.Tk()
     root.wm_title("Model")
     canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
