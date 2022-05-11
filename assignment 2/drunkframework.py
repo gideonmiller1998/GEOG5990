@@ -34,16 +34,11 @@ class person():
         self.town = town
     
     def __str__(self):       
-        """
-        
-        give each drunk a house number and shows x and y coordinate
-
-        """
         return f"housenumber = {self.housenumber}, x = {self.x}, y = {self.y}"
     
     def move(self):
         """
-        Make each drunk move randomly
+        Make each drunk move one step randomly. Deafult set to 5 steps at each iteration to speed up model time.
 
         Returns
         -------
@@ -51,14 +46,14 @@ class person():
 
         """
         if random.random() < 0.5:
-            self.y = (self.y + 1) % 300
+            self.y = (self.y + 5) % 300
         else:
-            self.y = (self.y - 1) % 300
+            self.y = (self.y - 5) % 300
                 
         if random.random() < 0.5:
-            self.x = (self.x + 1) % 300
+            self.x = (self.x + 5) % 300
         else:
-            self.x = (self.x - 1) % 300
+            self.x = (self.x - 5) % 300
 
     def density(self):
         """

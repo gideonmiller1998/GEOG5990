@@ -42,7 +42,7 @@ def load_town(file):
 
 def plot_town(town):
     """
-    create function to plot and show environemnt data 
+    Plot and show environemnt data 
 
     Parameters
     ----------
@@ -54,7 +54,6 @@ def plot_town(town):
     None.
 
     """
-    town = deepcopy(town)
     matplotlib.pyplot.ylim(0, len(town[0]))
     matplotlib.pyplot.xlim(0, len(town))
     matplotlib.pyplot.imshow(town)
@@ -65,12 +64,12 @@ def main():
 
     """
     drunk_town = load_town("drunk.txt") 
-    density_town = deepcopy(drunk_town)
+    density_town = deepcopy(drunk_town) #create copy of town environment that becomes the denisty map
     fig,ax = matplotlib.pyplot.subplots() 
     
     drunks = []
     for i in range(NUM_DRUNKS):
-        drunkman = drunkframework.person(150, 150, (i+1)*10, density_town)
+        drunkman = drunkframework.person(150, 150, (i+1)*10, density_town) # create new person at pub with housenumber increasing by 10 each time
         drunks.append(drunkman)
 
     
@@ -111,22 +110,22 @@ def main():
         
     def start():
         """
-        Create fundtion to begin running model and animation
+        Function to begin running model and animation
 
         Returns
         -------
         None.
 
         """
-        animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False, interval = 1)
+        animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False, interval = 0)
         canvas.draw() 
         animation.save
         plot_town(density_town)
         drunkman.show()
         matplotlib.pyplot.show()
-
+        
         #write file recording density of drunks passing each cell
-        f2 = open('drunk_desnity.txt', 'w', newline='')
+        f2 = open('drunk_density.txt', 'w', newline='')
         writer = csv.writer(f2)
         for row in density_town: 
             writer.writerow(row)
@@ -139,10 +138,8 @@ def main():
     canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)    
     run_button = tkinter.Button(root, text = "Run", command = start)
     run_button.pack()
-    
     root.mainloop() 
            
-
 if __name__ == "__main__":
     main()
     
